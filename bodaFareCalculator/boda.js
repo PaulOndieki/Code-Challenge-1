@@ -1,4 +1,6 @@
-// bodaFare program
+// bodaFare program (Node.js version)
+const readline = require("readline");
+
 function calculateBodaFare(distanceInKm) {
   const baseFare = 50;
   const perKmCharge = 15;
@@ -12,7 +14,20 @@ function calculateBodaFare(distanceInKm) {
   console.log("Panda Pikipiki!");
 }
 
-const input = prompt("Unafika wapi Mkubwa? Kilometer ngapi?:");
-calculateBodaFare(Number(input));
+// Setup input from the terminal using readline
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.question("Unafika wapi Mkubwa? Kilometer ngapi?: ", function (input) {
+  const distance = Number(input);
+  if (isNaN(distance)) {
+    console.log("Tafadhali andika nambari halali (valid number).");
+  } else {
+    calculateBodaFare(distance);
+  }
+  rl.close();
+});
 
 // done
